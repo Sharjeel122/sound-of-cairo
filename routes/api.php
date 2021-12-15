@@ -20,8 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/user/register', 'App\Http\Controllers\UserController@Register');
 Route::post('/user/login', 'App\Http\Controllers\UserController@Login');
+Route::get('/user/all', 'App\Http\Controllers\UserController@GetAll');
+Route::get('/user/{id}', 'App\Http\Controllers\UserController@Get');
 
-
-Route::group(['middleware' => 'cors','auth:sanctum','json.response' ], function () {
+Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
     Route::post('/user/logout', 'App\Http\Controllers\UserController@Logout');
+    Route::post('/user/block/{id}', 'App\Http\Controllers\UserController@Block');
+    Route::post('/user/unblock/{id}', 'App\Http\Controllers\UserController@UnBlock');
 });
