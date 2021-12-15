@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/user/register', 'App\Http\Controllers\UserController@Register');
+Route::post('/user/login', 'App\Http\Controllers\UserController@Login');
+
+
+Route::group(['middleware' => 'cors','auth:sanctum','json.response' ], function () {
+    Route::post('/user/logout', 'App\Http\Controllers\UserController@Logout');
+});
