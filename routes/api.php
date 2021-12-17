@@ -22,6 +22,8 @@ Route::post('/user/register', 'App\Http\Controllers\UserController@Register');
 Route::post('/user/login', 'App\Http\Controllers\UserController@Login');
 Route::get('/user/all', 'App\Http\Controllers\UserController@GetAll');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@Get');
+Route::post('password/email', 'App\Http\Controllers\ForgotPasswordController@forgot');
+Route::post('password/reset', 'App\Http\Controllers\ForgotPasswordController@reset');
 
 Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
     Route::post('/user/logout', 'App\Http\Controllers\UserController@Logout');
