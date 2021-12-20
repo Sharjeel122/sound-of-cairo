@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/wellcome', function () {
     return 'not login';
 });
+Route::view('forgot_password', 'reset_password')->name('password.reset');
 
