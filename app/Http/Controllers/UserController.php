@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function Login(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('get_user_profile')->where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password))
         {
             $result =['Message'=>['Bad username or password']];
@@ -72,15 +72,15 @@ class UserController extends Controller
 
     }
 
-    public function GetAll()
+    public function GetAll($pageNum)
     {
-        $users = User::where('status',1)->get();
+        $users = User::with('get_user_profile')->where('status',1)->paginate(2, ['*'], 'page', $pageNum);
         return response()->json(['users'=>$users]);
     }
 
     public function Get($id)
     {
-        $user = User::where('id',$id)->first();
+        $user = User::with('get_user_profile')->where('id',$id)->first();
         if($user != null)
         {
             return response()->json(['user'=>$user]);
@@ -95,7 +95,7 @@ class UserController extends Controller
 
     public function Block($id)
     {
-        $user =  User::where('id',$id)->first();
+        $user =  User::with('get_user_profile')->where('id',$id)->first();
         if($user != null)
         {
             $user->status = false ;
@@ -111,7 +111,7 @@ class UserController extends Controller
     }
     public function UnBlock($id)
     {
-        $user = User::where('id',$id)->first();
+        $user = User::with('get_user_profile')->where('id',$id)->first();
         if($user != null)
         {
             $user->status = true ;
