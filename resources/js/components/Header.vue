@@ -25,7 +25,7 @@
                         <a class="nav-link nav-border-left" href="#">Walkthroughs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-border-left login-register-modal" href="#"  >Login/Join</a>
+                        <a class="nav-link nav-border-left login-register-modal" id="open_login_modal" href="#" @click="open_login_modal" >Login/Join </a>
                     </li>
                     <!--  <li class="nav-item dropdown">
                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

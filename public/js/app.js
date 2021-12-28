@@ -5774,6 +5774,104 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5791,6 +5889,19 @@ __webpack_require__.r(__webpack_exports__);
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     HeroSection: _HeroSection__WEBPACK_IMPORTED_MODULE_2__["default"],
     Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return;
+    {
+      loginRegisterPpopop: true;
+    }
+  },
+  methods: {
+    close_Login_Modal: function close_Login_Modal() {
+      $('#loginModal').modal('hide');
+      $('#loginModal').removeClass("show");
+      $('#loginModal').css('display', 'none');
+    }
   }
 });
 
@@ -29587,7 +29698,36 @@ var render = function () {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "div",
+        {
+          staticClass: "collapse navbar-collapse",
+          attrs: { id: "navbarSupportedContent" },
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("ul", { staticClass: "navbar-nav ms-auto mb-2 mb-lg-0 ml-auto" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link nav-border-left login-register-modal",
+                  attrs: { id: "open_login_modal", href: "#" },
+                  on: { click: _vm.open_login_modal },
+                },
+                [_vm._v("Login/Join ")]
+              ),
+            ]),
+          ]),
+        ]
+      ),
     ]),
   ])
 }
@@ -29616,65 +29756,55 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "collapse navbar-collapse",
-        attrs: { id: "navbarSupportedContent" },
-      },
-      [
-        _c("form", { staticClass: "d-flex" }, [
-          _c("div", { staticClass: "search nav-border-left" }, [
-            _c("i", { staticClass: "fa fa-search" }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search Sounds" },
-            }),
-          ]),
-        ]),
+    return _c("form", { staticClass: "d-flex" }, [
+      _c("div", { staticClass: "search nav-border-left" }, [
+        _c("i", { staticClass: "fa fa-search" }),
         _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav ms-auto mb-2 mb-lg-0 ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link active",
-                attrs: { "aria-current": "page", href: "#" },
-              },
-              [_vm._v("About")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              { staticClass: "nav-link nav-border-left", attrs: { href: "#" } },
-              [_vm._v("Categories")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              { staticClass: "nav-link nav-border-left", attrs: { href: "#" } },
-              [_vm._v("Walkthroughs")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link nav-border-left login-register-modal",
-                attrs: { href: "#" },
-              },
-              [_vm._v("Login/Join")]
-            ),
-          ]),
-        ]),
-      ]
-    )
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Search Sounds" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active",
+          attrs: { "aria-current": "page", href: "#" },
+        },
+        [_vm._v("About")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link nav-border-left", attrs: { href: "#" } },
+        [_vm._v("Categories")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link nav-border-left", attrs: { href: "#" } },
+        [_vm._v("Walkthroughs")]
+      ),
+    ])
   },
 ]
 render._withStripped = true
@@ -29780,11 +29910,258 @@ var render = function () {
       _c("SectionSeperator"),
       _vm._v(" "),
       _c("Footer"),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal  login-register-popop",
+          attrs: { id: "loginModal" },
+        },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content " }, [
+              _c("div", { staticClass: "modal-header-top text-end" }, [
+                _c("button", {
+                  staticClass: "btn-close",
+                  attrs: {
+                    type: "button",
+                    "data-bs-dismiss": "modal",
+                    "aria-label": "Close",
+                  },
+                  on: { click: _vm.close_Login_Modal },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "social-icon-inlie" }, [
+                  _c("img", {
+                    staticClass: "socail-icon",
+                    attrs: { src: "Sound-of-cairo/img/google-icon.png" },
+                  }),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "socail-icon",
+                    attrs: { src: "Sound-of-cairo/img/facebook-icon.png" },
+                  }),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "socail-icon",
+                    attrs: { src: "Sound-of-cairo/img/apple-icon.png" },
+                  }),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal  login-register-popop",
+          attrs: { id: "RegisterModal" },
+        },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content " }, [
+              _c("div", { staticClass: "modal-header-top text-end" }, [
+                _c("button", {
+                  staticClass: "btn-close",
+                  attrs: {
+                    type: "button",
+                    "data-bs-dismiss": "modal",
+                    "aria-label": "Close",
+                  },
+                  on: { click: _vm.close_Login_Modal },
+                }),
+              ]),
+              _vm._v(" "),
+              _vm._m(5),
+            ]),
+          ]),
+        ]
+      ),
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header-area text-center" }, [
+      _c("h3", [_vm._v("Login to your account")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", { staticClass: "login-form" }, [
+      _c("div", { staticClass: "input-feild-area" }, [
+        _c("div", { staticClass: "form-floating mb-3" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "floatingInput",
+              placeholder: "name@example.com",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "floatingInput" } }, [
+            _vm._v("Username or e-mail address"),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-floating" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              id: "floatingPassword",
+              placeholder: "Password",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "floatingPassword" } }, [
+            _vm._v("Password"),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "forgot-pass-area" }, [
+      _c("a", { staticClass: "forgot-password-link", attrs: { href: "#" } }, [
+        _vm._v("Forgot password?"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login-register-button-area" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn modal-btn-popup",
+          attrs: { id: "register_btn_loginPage" },
+        },
+        [_vm._v("Register")]
+      ),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn modal-btn-popup popup-login-btn" }, [
+        _vm._v("Login"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "or-line-text text-center" }, [
+      _c("hr", { staticClass: "or-line" }),
+      _vm._v(" "),
+      _c("p", { staticClass: "or-text" }, [_vm._v("or")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "modal-header-area text-center" }, [
+        _c("h3", [_vm._v("Create  your account")]),
+      ]),
+      _vm._v(" "),
+      _c("form", { staticClass: "login-form" }, [
+        _c("div", { staticClass: "input-feild-area" }, [
+          _c("div", { staticClass: "form-floating mb-3" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "name",
+                id: "floatingInput",
+                placeholder: "John Doe",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "floatingInput" } }, [_vm._v("Name ")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-floating mb-3" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                id: "floatingInput",
+                placeholder: "name@example.com",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "floatingInput" } }, [
+              _vm._v("Username or e-mail address"),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-floating" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "floatingPassword",
+                placeholder: "profession",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "floatingPassword" } }, [
+              _vm._v("Profession"),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-floating" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                id: "floatingPassword",
+                placeholder: "Password",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "floatingPassword" } }, [
+              _vm._v("Password"),
+            ]),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "login-register-button-area" }, [
+        _c("button", { staticClass: "btn modal-btn-popup" }, [
+          _vm._v("Register"),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

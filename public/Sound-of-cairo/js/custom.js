@@ -3,18 +3,24 @@ $(document).ready(function(){
 
 // lofin register modal 
 
-// $('.login-register-modal').on('click', function() {
-//    $('login-register-popop').modal({backdrop: 'static', keyboard: false}, 'show');
-//    $('.login-register-popop').addClass("show");
-//    $('.login-register-popop').css('display' , 'block');
 
-// });
+$('#open_login_modal').on('click', function() {
+   $('#loginModal').modal({backdrop: 'static', keyboard: false}, 'show');
+   $('#loginModal').addClass("show");
+   $('#loginModal').css('display' , 'block');
 
-// $('.modal-btn-popup').on('click', function() {
-//    $('.login-register-popop').modal('hide');
-//   $('.login-register-popop').removeClass("show");
-//    $('.login-register-popop').css('display' , 'none');
-// });
+});
+
+
+
+$('#register_btn_loginPage').on('click', function() {
+
+   $('#loginModal').modal('hide');
+    $('#RegisterModal').modal('show');
+
+});
+
+
 
 
 // tabs hide show js ----------------------
