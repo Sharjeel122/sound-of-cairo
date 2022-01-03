@@ -10,14 +10,19 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function IndexPage() {
+    return view('welcome');
+} 
     public function Register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:users',
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'profession' => 'required',
             'password' => 'required',
-            'agree_on_terms' => 'required'
+            'date_of_birth'=>'required',
+            'agree_on_terms' => 'required|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -31,8 +36,10 @@ class UserController extends Controller
         else
         {
             $user = new User();
-            $user->name= $request->name;
+            $user->first_name= $request->first_name;
+            $user->last_name= $request->last_name;
             $user->email= $request->email;
+            $user->date_of_birth= $request->date_of_birth;
             $user->profession= $request->profession;
             $user->status= true;
             $user->agree_on_terms= true;
@@ -63,7 +70,7 @@ class UserController extends Controller
 
     public function Logout(Request $request)
     {
-
+          
             $id = $request->user('sanctum')->id;
             $user = User::findOrFail($id);
             $user->tokens()->delete();

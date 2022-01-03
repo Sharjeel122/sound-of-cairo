@@ -13,7 +13,25 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+import VueRouter from "vue-router";
+import Vue from 'vue';
+Vue.use(VueRouter)
+import UserDashboard from "./components/UserDashboard";
+const routes =[
+    {
+        name: "UserDashboard",
+        component: UserDashboard,
+        path: "/user-dashboard",
+    },
+];
+const router = new VueRouter({
+    routes,
+    mode: 'history'
+})
 
+const app = new Vue({
+    router:router,
+}).$mount('#app')
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

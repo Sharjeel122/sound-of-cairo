@@ -43,7 +43,9 @@ class UserSeeder extends Seeder
         $role->givePermissionTo(Permission::all());
 
         $user1 = new User;
-        $user1->name = 'Admin';
+        $user1->first_name = 'Admin';
+        $user1->last_name = 'Admin';
+        $user1->date_of_birth ='2021-12-12';
         $user1->profession = 'Musician';
         $user1->agree_on_terms =true;
         $user1->email = 'admin@gmail.com';
@@ -53,7 +55,9 @@ class UserSeeder extends Seeder
 
 
         $user3 = new User;
-        $user3->name = 'Contributor';
+        $user3->first_name = 'Contributor';
+        $user3->last_name = 'Contributor';
+        $user3->date_of_birth ='2021-12-12';
         $user3->profession = 'Musician';
         $user3->agree_on_terms =true;
         $user3->email = 'contributor@gmail.com';
@@ -62,7 +66,9 @@ class UserSeeder extends Seeder
         $user3->assignRole('contributor');
 
         $user4 = new User;
-        $user4->name = 'Moderator';
+        $user4->first_name = 'Moderator';
+       $user4->last_name = 'Moderator';
+       $user4->date_of_birth ='2021-12-12';
         $user4->profession = 'Musician';
         $user4->agree_on_terms =true;
         $user4->email = 'moderator@gmail.com';
@@ -71,7 +77,9 @@ class UserSeeder extends Seeder
         $user4->assignRole('moderator');
 
         $user5 = new User;
-        $user5->name = 'User';
+        $user5->first_name = 'User';
+        $user5->last_name = 'User';
+        $user5->date_of_birth ='2021-12-12';
         $user5->profession = 'Musician';
         $user5->agree_on_terms =true;
         $user5->email = 'user@gmail.com';

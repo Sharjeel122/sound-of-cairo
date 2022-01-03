@@ -24,12 +24,12 @@ Route::get('/user/all/{pageNum}', 'App\Http\Controllers\UserController@GetAll');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@Get');
 Route::post('password/email', 'App\Http\Controllers\ForgotPasswordController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\ForgotPasswordController@reset');
-Route::post('/user-profile/user/{id}', 'App\Http\Controllers\UserProfileController@Add');
-Route::put('/user-profile/user/delete/{id}', 'App\Http\Controllers\UserProfileController@delete');
-Route::put('/user-profile/user/update/{id}', 'App\Http\Controllers\UserProfileController@update');
 
-Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
+ Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
     Route::post('/user/logout', 'App\Http\Controllers\UserController@Logout');
     Route::post('/user/block/{id}', 'App\Http\Controllers\UserController@Block');
     Route::post('/user/unblock/{id}', 'App\Http\Controllers\UserController@UnBlock');
-});
+    Route::post('/user-profile/user/{id}', 'App\Http\Controllers\UserProfileController@Add');
+    Route::put('/user-profile/user/delete/{id}', 'App\Http\Controllers\UserProfileController@delete');
+    Route::put('/user-profile/user/update/{id}', 'App\Http\Controllers\UserProfileController@update');
+ });
