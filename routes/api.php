@@ -24,6 +24,12 @@ Route::get('/user/all/{pageNum}', 'App\Http\Controllers\UserController@GetAll');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@Get');
 Route::post('password/email', 'App\Http\Controllers\ForgotPasswordController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\ForgotPasswordController@reset');
+//Get tag
+Route::get('/tag/{id}', 'App\Http\Controllers\TagController@Get');
+Route::get('/tag/all/{pageNum}', 'App\Http\Controllers\TagController@GetAll');
+//Get Category
+Route::get('/category/{id}', 'App\Http\Controllers\CategoryController@Get');
+Route::get('/category/all/{pageNum}', 'App\Http\Controllers\CategoryController@GetAll');
 
  Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
     Route::post('/user/logout', 'App\Http\Controllers\UserController@Logout');
@@ -38,4 +44,10 @@ Route::post('password/reset', 'App\Http\Controllers\ForgotPasswordController@res
      Route::put('/category/{id}', 'App\Http\Controllers\CategoryController@Update');
      Route::put('/category/block/{id}', 'App\Http\Controllers\CategoryController@Block');
      Route::put('/category/unblock/{id}', 'App\Http\Controllers\CategoryController@Unblock');
+
+     //    Tag Routes
+     Route::post('/tag', 'App\Http\Controllers\TagController@Add');
+     Route::put('/tag/{id}', 'App\Http\Controllers\TagController@Update');
+     Route::put('/tag/block/{id}', 'App\Http\Controllers\TagController@Block');
+     Route::put('/tag/unblock/{id}', 'App\Http\Controllers\TagController@Unblock');
  });
