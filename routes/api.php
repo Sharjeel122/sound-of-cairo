@@ -32,4 +32,10 @@ Route::post('password/reset', 'App\Http\Controllers\ForgotPasswordController@res
     Route::post('/user-profile/user/{id}', 'App\Http\Controllers\UserProfileController@Add');
     Route::put('/user-profile/user/delete/{id}', 'App\Http\Controllers\UserProfileController@delete');
     Route::put('/user-profile/user/update/{id}', 'App\Http\Controllers\UserProfileController@update');
+
+//    Category Routes
+     Route::post('/category', 'App\Http\Controllers\CategoryController@Add');
+     Route::put('/category/{id}', 'App\Http\Controllers\CategoryController@Update');
+     Route::put('/category/block/{id}', 'App\Http\Controllers\CategoryController@Block');
+     Route::put('/category/unblock/{id}', 'App\Http\Controllers\CategoryController@Unblock');
  });
