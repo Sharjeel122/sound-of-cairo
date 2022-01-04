@@ -15,6 +15,7 @@ class UserProfileController extends Controller
 
         $validator = Validator::make($request->all(), [
             'image' => 'required',
+            'bio' => 'required',
         ]);
 
         if ($validator->fails()) {
