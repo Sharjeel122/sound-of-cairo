@@ -10,7 +10,9 @@ class LocationController extends Controller
     public function Add(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'area' => 'required',
+
         ]);
 
         if ($validator->fails()) {
@@ -27,7 +29,8 @@ class LocationController extends Controller
     public function Update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'area' => 'required'
         ]);
 
         if ($validator->fails()) {
