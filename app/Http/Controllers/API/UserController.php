@@ -1,18 +1,17 @@
 <?php
-
-namespace App\Http\Controllers;
-use App\Models\User;
+namespace App\Http\Controllers\API;
+use App\Http\Controllers\Controller;
 use Hash;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function IndexPage() {
     return view('welcome');
-} 
+}
     public function Register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -70,7 +69,7 @@ class UserController extends Controller
 
     public function Logout(Request $request)
     {
-          
+
             $id = $request->user('sanctum')->id;
             $user = User::findOrFail($id);
             $user->tokens()->delete();
