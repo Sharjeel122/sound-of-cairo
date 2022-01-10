@@ -44,6 +44,6 @@ class User extends Authenticatable
     ];
     public function get_user_profile()
     {
-        return $this->hasMany(UserProfile::class, 'user_id');
+        return $this->hasOne(UserProfile::class, 'user_id');
     }
 }
