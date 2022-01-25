@@ -11,7 +11,8 @@ class LocationController extends Controller
     public function Add(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'country_id' => 'required',
+            'city_id' => 'required',
             'area' => 'required',
 
         ]);
@@ -30,7 +31,8 @@ class LocationController extends Controller
     public function Update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'country_id' => 'required',
+            'city_id' => 'required',
             'area' => 'required'
         ]);
 
@@ -38,6 +40,7 @@ class LocationController extends Controller
             $errors = $validator->messages();
             return response()->json($errors, 400);
         } else {
+
             $location= Location::where('id', $id)->first();
             if ( $location == null) {
                 $result = ['Message' => ['location Not Found']];
@@ -89,7 +92,7 @@ class LocationController extends Controller
     }
     public function GetAll($pageNum)
     {
-        $locations = Location::where('status',1)->paginate(2, ['*'], 'page', $pageNum);
-        return response()->json(['users'=>$locations]);
+        $locations = Location::all();
+        return response()->json(['locations'=>$locations]);
     }
 }

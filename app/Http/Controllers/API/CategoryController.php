@@ -97,9 +97,10 @@ class CategoryController extends Controller
             return response()->json($category );
         }
     }
+
     public function GetAll($pageNum)
     {
-        $categories  = Category ::where('status',1)->paginate(2, ['*'], 'page', $pageNum);
+        $categories  = Category::all();
         return response()->json(['users'=>$categories]);
     }
 }
