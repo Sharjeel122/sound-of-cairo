@@ -63,6 +63,7 @@ Route::middleware(['json.response'])
                         Route::put('/location/{id}', 'LocationController@Update');
                         Route::put('/location/block/{id}', 'LocationController@Block');
                         Route::put('/location/unblock/{id}', 'LocationController@Unblock');
+                        
 
                         // current user
                         Route::get('/current-user', function() {
