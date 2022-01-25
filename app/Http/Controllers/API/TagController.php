@@ -87,7 +87,7 @@ class TagController extends Controller
     }
     public function GetAll($pageNum)
     {
-        $tags = Tag::where('status',1)->paginate(2, ['*'], 'page', $pageNum);
+        $tags = Tag::all();
         return response()->json(['users'=>$tags]);
     }
 }

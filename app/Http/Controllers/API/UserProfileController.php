@@ -14,7 +14,7 @@ class UserProfileController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'image' => 'required',
+            'image' => 'required|image',
             'bio' => 'required',
         ]);
 
@@ -31,20 +31,21 @@ class UserProfileController extends Controller
                 return response()->json($result ,404);
             }
             else
-            {
+            { 
+                $data= $request->all();
+                $Userprofile = new UserProfile($data);
                 $file = $request->image;
                 $name = $file->getClientOriginalName();
                 $name = rand(0,1000).'_'.$name;
                 $destinationPath = public_path('/user_images/');
                 $file->move($destinationPath, $name);
-                $data= $request->all();
                 unset($data['image'] );
-                $Userprofile = new UserProfile($data);
                 $Userprofile->image= $name;
                 $Userprofile->user_id=$id;
                 $Userprofile->save();
                 $userWithProfile = User::where('id',$id)->with('get_user_profile')->first();
                 return response()->json($userWithProfile);
+           		
             }
         }
     }

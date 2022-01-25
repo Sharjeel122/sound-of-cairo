@@ -67,6 +67,8 @@ Route::middleware(['json.response'])
                         // current user
                         Route::get('/current-user', function() {
                             $user = User::with('get_user_profile')->findOrFail(auth()->user()->id);
+                            $role = $user->roles->first()->name;
+                            $user->role=$role;
                             return $user;
                         });
                     });
