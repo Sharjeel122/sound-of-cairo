@@ -88,6 +88,6 @@ class TagController extends Controller
     public function GetAll($pageNum)
     {
         $tags = Tag::all();
-        return response()->json(['users'=>$tags]);
+        return response()->json(['tags'=>$tags]);
     }
 }
