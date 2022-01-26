@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function GetAll($pageNum)
     {
-        $users = User::with('get_user_profile')->where('status',1)->paginate(2, ['*'], 'page', $pageNum);
+        $users = User::with('get_user_profile')->get();
         return response()->json(['users'=>$users]);
     }
 
