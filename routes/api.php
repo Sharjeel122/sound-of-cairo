@@ -36,6 +36,9 @@ Route::middleware(['json.response'])
                     Route::get('/category/all/{pageNum}', 'CategoryController@GetAll');
                     //Get Location
                     Route::get('/location/{id}', 'LocationController@Get');
+                    Route::get('/countries', 'LocationController@GetCountries');
+                    Route::get('/state/{id}', 'LocationController@GetStates');
+                    Route::get('/city/{id}', 'LocationController@GetCities');
                     Route::get('/location/all/{pageNum}', 'LocationController@GetAll');
 
                     Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {

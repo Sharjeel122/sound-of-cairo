@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 
 class LocationController extends Controller
@@ -94,5 +95,23 @@ class LocationController extends Controller
     {
         $locations = Location::all();
         return response()->json(['locations'=>$locations]);
+    }
+
+      public function GetStates($id)
+    {
+        $states = DB::table('states')->where('country_id',$id)->get();
+        return response()->json(['states'=>$states]);
+    }
+
+      public function GetCountries()
+    {
+        $countries = DB::table('countries')->get();
+        return response()->json(['countries'=>$countries]);
+    }
+
+      public function GetCities($id)
+    {
+        $cities = DB::table('cities')->where('state_id',$id)->get();
+        return response()->json(['cities'=>$cities]);
     }
 }
