@@ -13,6 +13,7 @@ class LocationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'country_id' => 'required',
+            'state_id' => 'required',
             'city_id' => 'required',
             'area' => 'required',
 
@@ -33,6 +34,7 @@ class LocationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'country_id' => 'required',
+  'state_id' => 'required',
             'city_id' => 'required',
             'area' => 'required'
         ]);
