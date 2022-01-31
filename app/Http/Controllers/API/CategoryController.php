@@ -13,7 +13,8 @@ class CategoryController extends Controller
     public function Add(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'image' => 'required|image'
         ]);
 
         if ($validator->fails()) {
@@ -21,8 +22,17 @@ class CategoryController extends Controller
             return response()->json($errors ,400);
         }
         else
-        {
-            $category= new Category($request->all());
+        {    
+
+           $data= $request->all();
+           $category= new Category($data);
+            $file = $request->image;
+            $name = $file->getClientOriginalName();
+            $name = rand(0,1000).'_'.$name;
+            $destinationPath = public_path('/user_images/');
+            $file->move($destinationPath, $name);
+            unset($data['image'] );
+            $category->image= $name;
             $category->save();
             return response()->json($category);
         }
@@ -31,8 +41,10 @@ class CategoryController extends Controller
 
     public function Update(Request $request,$id)
     {
+
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'image' => 'required|image'
         ]);
 
         if ($validator->fails()) {
@@ -49,8 +61,21 @@ class CategoryController extends Controller
             }
             else
             {
-                $category->update($request->all());
-                return response()->json($category);
+                
+              $data= $request->all();
+              if($request->hasFile('image'))
+              {
+                unset($data['image'] );
+                $file = $request->image;
+                $name = $file->getClientOriginalName();
+                $name = rand(0,1000).'_'.$name;
+                $destinationPath = public_path('/user_images/');
+                $file->move($destinationPath, $name);
+                $category->image= $name;
+              }
+               
+              $category->update($data);
+              return response()->json($category);
             }
 
         }
@@ -98,7 +123,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function GetAll($pageNum)
+    public function GetAll()
     {
         $categories  = Category::all();
         return response()->json(['users'=>$categories]);

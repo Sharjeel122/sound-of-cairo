@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,8 +41,10 @@ Route::middleware(['json.response'])
                     Route::get('/state/{id}', 'LocationController@GetStates');
                     Route::get('/city/{id}', 'LocationController@GetCities');
                     Route::get('/location/all/{pageNum}', 'LocationController@GetAll');
+            
 
                     Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
+
                         Route::post('/user/logout', 'UserController@Logout');
                         Route::post('/user/block/{id}', 'UserController@Block');
                         Route::post('/user/unblock/{id}', 'UserController@UnBlock');
@@ -49,9 +52,21 @@ Route::middleware(['json.response'])
                         Route::put('/user-profile/user/delete/{id}', 'UserProfileController@delete');
                         Route::put('/user-profile/user/update/{id}', 'UserProfileController@update');
 
+                        // current user
+                        Route::get('/current-user', function(Request $request) {
+                            $user = User::with('get_user_profile')->findOrFail(auth()->user()->id);
+                            $role = $user->roles->first()->name;
+                            $user->role=$role;
+                            return $user;
+                        });
+
+
+                       
+
+              Route::group(['middleware' =>  'role:admin','auth:sanctum','json.response' ], function () {
                         // Category Routes
                         Route::post('/category', 'CategoryController@Add');
-                        Route::put('/category/{id}', 'CategoryController@Update');
+                        Route::post('/category/{id}', 'CategoryController@Update');
                         Route::put('/category/block/{id}', 'CategoryController@Block');
                         Route::put('/category/unblock/{id}', 'CategoryController@Unblock');
 
@@ -68,14 +83,8 @@ Route::middleware(['json.response'])
                         Route::put('/location/unblock/{id}', 'LocationController@Unblock');
                         
 
-                        // current user
-                        Route::get('/current-user', function() {
-                            $user = User::with('get_user_profile')->findOrFail(auth()->user()->id);
-                            $role = $user->roles->first()->name;
-                            $user->role=$role;
-                            return $user;
-                        });
-                    });
+                 });    
+          });
 
                 }
             );
