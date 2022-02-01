@@ -97,6 +97,59 @@ class CategoryController extends Controller
             return response()->json($category);
         }
     }
+
+   public function FeaturedOne($id)
+    {
+        $category= Category::where('id',$id)->first();
+        if($category == null)
+        {
+            $result =['Message'=>['Category Not Found']];
+            return response()->json($result ,404);
+        }
+        else
+        {
+            $category->featured_one= true;
+            $category->featured_two= false;
+            $category->update();
+            return response()->json($category);
+        }
+    }
+
+   public function FeaturedTwo($id)
+    {
+        $category= Category::where('id',$id)->first();
+        if($category == null)
+        {
+            $result =['Message'=>['Category Not Found']];
+            return response()->json($result ,404);
+        }
+        else
+        {
+            $category->featured_two= true;
+             $category->featured_one= false;
+            $category->update();
+            return response()->json($category);
+        }
+    }
+
+ public function UnFeatured($id)
+    {
+        $category= Category::where('id',$id)->first();
+        if($category == null)
+        {
+            $result =['Message'=>['Category Not Found']];
+            return response()->json($result ,404);
+        }
+        else
+        {
+            $category->featured_one= false;
+            $category->featured_two= false;
+            $category->update();
+            return response()->json($category);
+        }
+    }
+
+
     public function Unblock($id)
     {
         $category= Category::where('id',$id)->first();
@@ -123,9 +176,21 @@ class CategoryController extends Controller
         }
     }
 
+    public function GetFeaturedOne()
+    {
+        $categories = Category::where('featured_one',true)->where('status',true)->limit(2)->get();
+        return response()->json(['ocategories'=>$categories]);
+    }
+
+    public function GetFeaturedTwo()
+    {
+        $categories = Category::where('featured_two',true)->where('status',true)->limit(4)->get();
+        return response()->json(['tcategories'=>$categories]);
+    }
+
     public function GetAll()
     {
         $categories  = Category::all();
-        return response()->json(['users'=>$categories]);
+        return response()->json(['categories'=>$categories]);
     }
 }
