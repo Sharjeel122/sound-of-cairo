@@ -17,6 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
+            $table->boolean('featured_one')->default(false);
+            $table->boolean('featured_two')->default(false);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

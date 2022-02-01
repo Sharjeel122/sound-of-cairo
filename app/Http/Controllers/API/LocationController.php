@@ -99,6 +99,12 @@ class LocationController extends Controller
         return response()->json(['locations'=>$locations]);
     }
 
+    public function LocationsGet()
+    {
+        $locations = Location::limit(4)->get();
+        return response()->json(['locations'=>$locations]);
+    }
+
       public function GetStates($id)
     {
         $states = DB::table('states')->where('country_id',$id)->get();

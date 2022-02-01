@@ -34,6 +34,8 @@ Route::middleware(['json.response'])
                     Route::get('/tag/all/{pageNum}', 'TagController@GetAll');
                     //Get Category
                     Route::get('/category/{id}', 'CategoryController@Get');
+                    Route::get('/get/category/featured-one', 'CategoryController@GetFeaturedOne'); 
+                    Route::get('/get/category/featured-two', 'CategoryController@GetFeaturedTwo');
                     Route::get('/category/all/{pageNum}', 'CategoryController@GetAll');
                     //Get Location
                     Route::get('/location/{id}', 'LocationController@Get');
@@ -41,6 +43,9 @@ Route::middleware(['json.response'])
                     Route::get('/state/{id}', 'LocationController@GetStates');
                     Route::get('/city/{id}', 'LocationController@GetCities');
                     Route::get('/location/all/{pageNum}', 'LocationController@GetAll');
+                    Route::get('/home/location', 'LocationController@LocationsGet');
+
+
             
 
                     Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
@@ -69,6 +74,9 @@ Route::middleware(['json.response'])
                         Route::post('/category/{id}', 'CategoryController@Update');
                         Route::put('/category/block/{id}', 'CategoryController@Block');
                         Route::put('/category/unblock/{id}', 'CategoryController@Unblock');
+                        Route::put('/category/featured-one/{id}', 'CategoryController@FeaturedOne');
+                        Route::put('/category/featured-two/{id}', 'CategoryController@FeaturedTwo');
+                        Route::put('/category/un-featured/{id}', 'CategoryController@UnFeatured');
 
                         // Tag Routes
                         Route::post('/tag', 'TagController@Add');
