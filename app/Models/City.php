@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\City;
+use App\Models\Location;
 
-class Location extends Model
+class City extends Model
 {    protected $guarded = [];
     use HasFactory;
 
-   public function cities()
+    public function cities()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->hasOne(Location::class, 'city_id');
     }
 }
