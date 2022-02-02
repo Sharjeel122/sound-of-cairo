@@ -101,7 +101,7 @@ class LocationController extends Controller
 
     public function LocationsGet()
     {
-        $locations = Location::limit(4)->get();
+        $locations = Location::with('cities')->limit(4)->get();
         return response()->json(['locations'=>$locations]);
     }
 
