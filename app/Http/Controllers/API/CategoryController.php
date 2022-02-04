@@ -182,6 +182,13 @@ class CategoryController extends Controller
         return response()->json(['ocategories'=>$categories]);
     }
 
+    public function GetAllHome()
+    {
+        $categories = Category::where('status',true)->get();
+        return response()->json(['categories'=>$categories]);
+    }
+
+
     public function GetFeaturedTwo()
     {
         $categories = Category::where('featured_two',true)->where('status',true)->limit(4)->get();

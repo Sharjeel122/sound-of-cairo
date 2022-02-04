@@ -32,17 +32,20 @@ Route::middleware(['json.response'])
                      //Get tag
                     Route::get('/tag/{id}', 'TagController@Get');
                     Route::get('/tag/all/{pageNum}', 'TagController@GetAll');
+                    Route::get('/home/tag/all', 'TagController@GetAllHome');
                     //Get Category
                     Route::get('/category/{id}', 'CategoryController@Get');
                     Route::get('/get/category/featured-one', 'CategoryController@GetFeaturedOne'); 
                     Route::get('/get/category/featured-two', 'CategoryController@GetFeaturedTwo');
                     Route::get('/category/all/{pageNum}', 'CategoryController@GetAll');
+                    Route::get('/home/category/all', 'CategoryController@GetAllHome');
                     //Get Location
                     Route::get('/location/{id}', 'LocationController@Get');
                     Route::get('/countries', 'LocationController@GetCountries');
                     Route::get('/state/{id}', 'LocationController@GetStates');
                     Route::get('/city/{id}', 'LocationController@GetCities');
-                    Route::get('/location/all/{pageNum}', 'LocationController@GetAll');
+                    Route::get('home/location/all', 'LocationController@GetAllHome');
+                    Route::get('/location/all/admin', 'LocationController@GetAll');
                     Route::get('/home/location', 'LocationController@LocationsGet');
 
 
@@ -71,9 +74,9 @@ Route::middleware(['json.response'])
               Route::group(['middleware' =>  'role:admin','auth:sanctum','json.response' ], function () {
                         // Category Routes
                         Route::post('/category', 'CategoryController@Add');
-                        Route::post('/category/{id}', 'CategoryController@Update');
-                        Route::put('/category/block/{id}', 'CategoryController@Block');
-                        Route::put('/category/unblock/{id}', 'CategoryController@Unblock');
+                        Route::post('update/category/{id}', 'CategoryController@Update');
+                        Route::put('block/category/{id}', 'CategoryController@Block');
+                        Route::put('unblock/category/{id}', 'CategoryController@Unblock');
                         Route::put('/category/featured-one/{id}', 'CategoryController@FeaturedOne');
                         Route::put('/category/featured-two/{id}', 'CategoryController@FeaturedTwo');
                         Route::put('/category/un-featured/{id}', 'CategoryController@UnFeatured');
@@ -89,6 +92,7 @@ Route::middleware(['json.response'])
                         Route::put('/location/{id}', 'LocationController@Update');
                         Route::put('/location/block/{id}', 'LocationController@Block');
                         Route::put('/location/unblock/{id}', 'LocationController@Unblock');
+                        
                         
 
                  });    
