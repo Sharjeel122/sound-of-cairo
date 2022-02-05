@@ -90,4 +90,9 @@ class TagController extends Controller
         $tags = Tag::all();
         return response()->json(['tags'=>$tags]);
     }
+    public function GetAllHome()
+    {
+        $tags = Tag::where('status',1)->get();
+        return response()->json(['tags'=>$tags]);
+    }
 }

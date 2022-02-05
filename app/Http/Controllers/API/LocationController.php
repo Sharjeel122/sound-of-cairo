@@ -93,15 +93,23 @@ class LocationController extends Controller
             return response()->json($location);
         }
     }
-    public function GetAll($pageNum)
+    public function GetAll()
     {
         $locations = Location::all();
         return response()->json(['locations'=>$locations]);
     }
 
+    public function GetAllHome()
+    {
+        $locations = Location::where('status',1)->get();
+        return response()->json(['locations'=>$locations]);
+    }
+
+
+
     public function LocationsGet()
     {
-        $locations = Location::with('cities')->limit(4)->get();
+        $locations = Location::where('status',1)->with('cities')->limit(4)->get();
         return response()->json(['locations'=>$locations]);
     }
 
