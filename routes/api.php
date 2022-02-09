@@ -47,6 +47,11 @@ Route::middleware(['json.response'])
                     Route::get('home/location/all', 'LocationController@GetAllHome');
                     Route::get('/location/all/admin', 'LocationController@GetAll');
                     Route::get('/home/location', 'LocationController@LocationsGet');
+ 		    // Get sub category
+                    Route::get('get-sub-cat/all','SubCategoryController@get_sub_category');
+                    Route::get('get-sub-cat/{id}','SubCategoryController@get_sub');
+ 		    Route::get('sub-cat/all','SubCategoryController@sub_cat_admin');
+
 
 
             
@@ -92,6 +97,12 @@ Route::middleware(['json.response'])
                         Route::put('/location/{id}', 'LocationController@Update');
                         Route::put('/location/block/{id}', 'LocationController@Block');
                         Route::put('/location/unblock/{id}', 'LocationController@Unblock');
+
+			    // sub category routs
+                        Route::Post('add/sub/cat','SubCategoryController@add');
+                        Route::Post('update-sub-cat/{id}','SubCategoryController@update_sub');
+                        Route::Post('sub-cat-block/{id}','SubCategoryController@sub_block');
+                        Route::Post('sub-cat-unblock/{id}','SubCategoryController@sub_unblock');
                         
                         
 
