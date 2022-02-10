@@ -51,6 +51,8 @@ Route::middleware(['json.response'])
                     Route::get('get-sub-cat/all','SubCategoryController@get_sub_category');
                     Route::get('get-sub-cat/{id}','SubCategoryController@get_sub');
  		    Route::get('sub-cat/all','SubCategoryController@sub_cat_admin');
+                    //sound
+                    Route::get('get-sound/front','SoundController@front');
 
 
 
@@ -64,6 +66,13 @@ Route::middleware(['json.response'])
                         Route::post('/user-profile/user/{id}', 'UserProfileController@Add');
                         Route::put('/user-profile/user/delete/{id}', 'UserProfileController@delete');
                         Route::put('/user-profile/user/update/{id}', 'UserProfileController@update');
+
+			//sound
+			Route::Post('/add-sound','SoundController@Add_Sound');
+                        Route::get('get-all/sounds','SoundController@Get_All');
+                        Route::post('/block/sound/{id}','SoundController@Block');
+                        Route::post('/unBlock/sound/{id}','SoundController@UnBlock'); 
+                       
 
                         // current user
                         Route::get('/current-user', function(Request $request) {
