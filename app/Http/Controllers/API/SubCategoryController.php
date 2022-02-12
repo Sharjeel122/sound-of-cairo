@@ -156,4 +156,19 @@ class SubCategoryController extends Controller
           return response()->json($data,200);
     }
 
+public function Subcat_of_category($id)
+{
+       $cat = Category::where('id',$id)->where('status',true)->first();
+        if($cat == null)
+        {
+            $errors = ['Message'=>['Data not found']];
+            return response()->json($errors, 404);
+        }
+        else
+        {
+          $data = SubCategory::where('category_id',$id)->where('status',true)->get();
+            return response()->json($data,200);
+        }
+}
+
 }

@@ -58,6 +58,8 @@ class SoundController extends Controller
                 $sound->user_id = $id;
                 $sound->duration = $request->duration;
                 $sound->format = $format;
+                $date=date("M-Y");
+                $sound->uploaded_date = $date;
             }
             else
             {
@@ -66,7 +68,6 @@ class SoundController extends Controller
             }
 
             $sound->save();
-            $sound->song_date = $sound_created_at->isoFormat('MMM  YY'); 
             return response()->json($sound);
         }
     }
@@ -112,6 +113,7 @@ class SoundController extends Controller
                          $file->move($destinationPath, $name);
                          unset($data['name']);
                          $sound->name =$name;
+
                     }
                     else
                     {
@@ -120,10 +122,9 @@ class SoundController extends Controller
                     }
 
                 }
-                // dd($file->getSize());
                 $sound->user_id = Auth::user()->id;
                 $sound->duration = $request->duration;
-
+               
                 $sound->format = $format;
             }
             $sound->update($data);
@@ -195,5 +196,12 @@ class SoundController extends Controller
         $sound->update();
         $message = ['Message',['Status Updated Successfully']];
         return response()->json($sound ,200);
+    }
+
+   //count totle song
+    public function Count_totle()
+    {
+        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('status',true)->count();
+        return response()->json($sound);
     }
 }

@@ -31,6 +31,8 @@ class CreateSoundsTable extends Migration
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
 
             $table->string('name');
+            $table->string('uploaded_date'); 
+            $table->string('song');
             $table->string('format')->nullable();
             $table->string('prov_rate')->nullable();
             $table->string('upvote')->nullable();
