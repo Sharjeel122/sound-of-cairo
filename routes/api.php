@@ -74,7 +74,9 @@ Route::middleware(['json.response'])
 			Route::Post('/add-sound','SoundController@Add_Sound');
                         Route::post('/block/sound/{id}','SoundController@Block');
                         Route::post('/unBlock/sound/{id}','SoundController@UnBlock');
-                        
+                        Route::post('/sound/upvote/{id}','SoundController@Upvote');
+                        Route::post('/save-sound/{id}','SoundController@Save_Sound');
+                        Route::get('/get-my-song/','SoundController@Get_My_Saved_Song');
                        
 
                         // current user

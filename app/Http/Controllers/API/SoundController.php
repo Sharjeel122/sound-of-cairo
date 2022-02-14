@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Sound;
 use App\Models\SoundUpload;
+use App\Models\Upvote;
+use App\Models\SaveSound;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -203,5 +205,100 @@ class SoundController extends Controller
     {
         $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('status',true)->count();
         return response()->json($sound);
+    }
+
+    // save sound
+    public function Save_Sound($id)
+    {
+
+        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('id',$id)->first();
+        if($sound == null)
+        {
+
+            $error = ['Message',['No Record Found!']];
+            return response()->json($error, 404);
+        }
+        else
+        {
+            $user_id = Auth::user()->id;
+            $check = SaveSound::where('user_id',$user_id)->where('sound_id',$id)->first();
+            if($check == null)
+            {
+                $save_sound = new SaveSound ();
+                $save_sound->user_id = $user_id;
+                $save_sound->sound_id = $id;
+                $save_sound->save();
+                $message = 'Sound Saved Successfully';
+            }
+            else
+            {
+                if($check->status == true)
+                {
+                    $check->delete();
+                    $message = 'Sound UnSaved Successfully';
+                }
+            }
+        }
+        return response()->json($message, 200);
+    }
+
+    // get auth user saved song
+    public function Get_My_Saved_Song()
+    {
+
+        $user_id = Auth::user()->id;
+
+        $sound = SaveSound::with('Sound')->where('user_id',$user_id)->get();
+        // dd($sound);
+        if($sound == null)
+        {
+            $error = ['Message',['No Record Found!']];
+            return response()->json($error, 404);
+        }
+        return response()->json($sound, 200);
+    }
+
+   // upvote the song
+    public function Upvote($id)
+    {
+        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('id',$id)->first();
+        if($sound == null)
+        {
+            $error = ['Message',['No Record Found!']];
+            return response()->json($error, 404);
+        }
+        else
+        {
+            $user_id = Auth::user()->id;
+            $check = Upvote::where('user_id',$user_id)->where('sound_id',$id)->first();
+
+            if($check == null)
+            {
+                $upvote = new Upvote();
+                $upvote->user_id = $user_id;
+                $upvote->sound_id = $id;
+                $sound->upvote += 1;
+                $upvote->save();
+            }
+            else
+            {
+                if($check->status == true)
+                {
+
+                    $sound->upvote -= 1;
+                    $check->status = false;
+                }
+                else
+                {
+                    $sound->upvote += 1;
+                    $check->status = true;
+                }
+
+                $check->update();
+            }
+
+            $sound->update();
+            return response()->json($sound, 200);
+        }
     }
 }
