@@ -57,6 +57,8 @@ Route::middleware(['json.response'])
                     Route::get('get-all/sounds','SoundController@Get_All'); 
                     Route::get('/totle-song','SoundController@Count_totle');
 
+                    Route::get('/totle-song','SoundController@Count_totle');
+                 
 
 
             
@@ -77,6 +79,8 @@ Route::middleware(['json.response'])
                         Route::post('/sound/upvote/{id}','SoundController@Upvote');
                         Route::post('/save-sound/{id}','SoundController@Save_Sound');
                         Route::get('/get-my-song/','SoundController@Get_My_Saved_Song');
+                        Route::post('/download/sound/{id}','DownloadController@download');
+                        Route::post('/delete_song/{id}','SoundController@Delete_Song'); 
                        
 
                         // current user
@@ -86,9 +90,6 @@ Route::middleware(['json.response'])
                             $user->role=$role;
                             return $user;
                         });
-
-
-                       
 
               Route::group(['middleware' =>  'role:admin','auth:sanctum','json.response' ], function () {
                         // Category Routes

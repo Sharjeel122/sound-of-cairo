@@ -44,6 +44,7 @@ class UserController extends Controller
             $user->agree_on_terms= true;
             $user->password= Hash::make($request->password);
             $user->save();
+            $user->assignRole('user');
             return response()->json($user);
         }
 

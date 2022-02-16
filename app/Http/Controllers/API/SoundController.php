@@ -301,4 +301,22 @@ class SoundController extends Controller
             return response()->json($sound, 200);
         }
     }
+     // delete song
+    public function Delete_Song($id)
+    {
+
+        $user_id =  Auth::user()->id;
+        $sound = Sound::where('user_id',$user_id)->where('id',$id)->first();
+        if($sound == null)
+        {
+            $result =['Message'=>['Sorry! you are unauthorized to Remove this song.']];
+            return response()->json($result ,400);
+        }
+        else
+        {
+            $sound->delete();
+            return response()->json($sound ,200);
+        }
+    }
+
 }
