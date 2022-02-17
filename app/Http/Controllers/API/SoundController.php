@@ -16,7 +16,7 @@ class SoundController extends Controller
     // index for front end only show those sound where status is true
     public function front()
     {
-        $sound = Sound::where('status',1)->get();
+        $sound = Sound::where('status',1)->where('sound_status','Approved')->get();
         return response()->json($sound, 200);
 
     }
@@ -134,7 +134,7 @@ class SoundController extends Controller
             $message = ['Message',['Sound Updated Successfully!']];
             return response()->json($sound, 200);
         }
-        dd($sound);
+    
     }
     // get sound by id
     public function Get_Sound($id)
@@ -203,7 +203,7 @@ class SoundController extends Controller
    //count totle song
     public function Count_totle()
     {
-        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('status',true)->count();
+        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('status',true)->where('sound_status','Approved')->count();
         return response()->json($sound);
     }
 
@@ -248,7 +248,7 @@ class SoundController extends Controller
 
         $user_id = Auth::user()->id;
 
-        $sound = SaveSound::with('Sound')->where('user_id',$user_id)->get();
+        $sound = SaveSound::with('Sound')->where('sound_status','Approved')->where('user_id',$user_id)->get();
         // dd($sound);
         if($sound == null)
         {
@@ -318,5 +318,30 @@ class SoundController extends Controller
             return response()->json($sound ,200);
         }
     }
+
+
+    //for admin
+        public function Delete($id)
+        {
+            $sound = Sound::where('id',$id)->first();
+            $sound->delete();
+            return response()->json($sound ,200);
+        }
+
+           //for admin
+        public function Rejected()
+        {
+            $sound = Sound::where('sound_status','Rejected')->get();
+            return response()->json($sound ,200);
+        }
+
+
+                 //for admin
+        public function Approved()
+        {
+
+            $sound = Sound::where('sound_status','Approved')->where('status',1)->get();
+            return response()->json($sound ,200);
+        }
 
 }

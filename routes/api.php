@@ -50,14 +50,13 @@ Route::middleware(['json.response'])
  		    // Get sub category
                     Route::get('get-sub-cat/all','SubCategoryController@get_sub_category');
                     Route::get('get-sub-cat/{id}','SubCategoryController@get_sub');
- 		    Route::get('sub-cat/all','SubCategoryController@sub_cat_admin');
+ 		            Route::get('sub-cat/all','SubCategoryController@sub_cat_admin');
                     Route::get('sub-cat/category/{id}','SubCategoryController@Subcat_of_category');
                     //sound
                     Route::get('get-sound/front','SoundController@front');
                     Route::get('get-all/sounds','SoundController@Get_All'); 
                     Route::get('/totle-song','SoundController@Count_totle');
 
-                    Route::get('/totle-song','SoundController@Count_totle');
                  
 
 
@@ -118,6 +117,11 @@ Route::middleware(['json.response'])
                         Route::Post('update-sub-cat/{id}','SubCategoryController@update_sub');
                         Route::Post('sub-cat-block/{id}','SubCategoryController@sub_block');
                         Route::Post('sub-cat-unblock/{id}','SubCategoryController@sub_unblock');
+                       
+                       //sound admin
+                        Route::post('sound/delete/{id}','SoundController@Delete'); 
+                        Route::get('sounds/rejected/','SoundController@Rejected');
+                        Route::get('sounds/approved/','SoundController@Approved');
                         
                         
 
