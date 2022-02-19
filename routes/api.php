@@ -52,15 +52,14 @@ Route::middleware(['json.response'])
                     Route::get('get-sub-cat/{id}','SubCategoryController@get_sub');
  		            Route::get('sub-cat/all','SubCategoryController@sub_cat_admin');
                     Route::get('sub-cat/category/{id}','SubCategoryController@Subcat_of_category');
+
                     //sound
                     Route::get('get-sound/front','SoundController@front');
                     Route::get('get-all/sounds','SoundController@Get_All'); 
                     Route::get('/totle-song','SoundController@Count_totle');
 
-                 
 
-
-            
+                
 
                     Route::group(['middleware' =>  'auth:sanctum','json.response' ], function () {
 
@@ -71,16 +70,25 @@ Route::middleware(['json.response'])
                         Route::put('/user-profile/user/delete/{id}', 'UserProfileController@delete');
                         Route::put('/user-profile/user/update/{id}', 'UserProfileController@update');
 
-			//sound
-			Route::Post('/add-sound','SoundController@Add_Sound');
+			         //sound
+			            Route::Post('/add-sound','SoundController@Add_Sound');
                         Route::post('/block/sound/{id}','SoundController@Block');
                         Route::post('/unBlock/sound/{id}','SoundController@UnBlock');
                         Route::post('/sound/upvote/{id}','SoundController@Upvote');
                         Route::post('/save-sound/{id}','SoundController@Save_Sound');
-                        Route::get('/get-my-song/','SoundController@Get_My_Saved_Song');
+                       Route::get('/get-my-song/','SoundController@Get_My_Saved_Song');
                         Route::post('/download/sound/{id}','DownloadController@download');
                         Route::post('/delete_song/{id}','SoundController@Delete_Song'); 
-                       
+
+
+                        //sound collection
+                         Route::post('/save/collection','CollectionController@Save_Collection');
+                          Route::post('collection/add/{id}/{soundId}','CollectionController@CollectionAdd');
+                       Route::get('/get/collection','CollectionController@Get_Collections');
+                        Route::post('collection/delete/{id}','CollectionController@Delete');
+
+ Route::get('/get/sound/collection','CollectionController@CollectionSound');
+
 
                         // current user
                         Route::get('/current-user', function(Request $request) {

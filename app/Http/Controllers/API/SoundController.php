@@ -247,8 +247,7 @@ class SoundController extends Controller
     {
 
         $user_id = Auth::user()->id;
-
-        $sound = SaveSound::with('Sound')->where('sound_status','Approved')->where('user_id',$user_id)->get();
+        $sound = SaveSound::with('Sound')->where('user_id',$user_id)->get();
         // dd($sound);
         if($sound == null)
         {
