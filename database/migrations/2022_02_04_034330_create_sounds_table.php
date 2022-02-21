@@ -41,6 +41,7 @@ class CreateSoundsTable extends Migration
             $table->string('information')->nullable();
             $table->string('description')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('sound_status')->default('Rejected');
             $table->boolean('is_downloadable')->default(true);
             $table->timestamps();
         });
