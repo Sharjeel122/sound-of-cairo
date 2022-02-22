@@ -31,7 +31,7 @@ class SoundController extends Controller
             'tag_id' => 'required',
             'category_id' => 'required',
             'sub_category_id' => 'required',
-            'duration' => 'required',
+            // 'duration' => 'required',
             'description' => 'required',
             'information' => 'required',
             'song' => 'required',
@@ -65,7 +65,7 @@ class SoundController extends Controller
             }
             else
             {
-                $message = ['Message',['Sound Must Be Audio File!']];
+                $message = 'Sound Must Be Audio File!';
                 return response()->json($message, 400);
             }
 
@@ -83,7 +83,7 @@ class SoundController extends Controller
         'tag_id' => 'required',
         'category_id' => 'required',
         'sub_category_id' => 'required',
-        'duration' => 'required',
+        // 'duration' => 'required',
 
         ]);
         if ($validator->fails()) {
@@ -139,7 +139,7 @@ class SoundController extends Controller
     // get sound by id
     public function Get_Sound($id)
     {
-        $sound = Sound::where('id',$id)->first();
+        $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('id',$id)->first();
        if($sound == null)
        {
         $message = ['Message',['Sound Not Found']];
@@ -147,6 +147,7 @@ class SoundController extends Controller
        }
        else
        {
+   
         return response()->json($sound, 200);
        }
     }
@@ -330,7 +331,7 @@ class SoundController extends Controller
            //for admin
         public function Rejected()
         {
-            $sound = Sound::where('sound_status','Rejected')->get();
+            $sound = Sound::with('User','locations','tags','Category','SubCategory')->where('sound_status','Rejected')->get();
             return response()->json($sound ,200);
         }
 
