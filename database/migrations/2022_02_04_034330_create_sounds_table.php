@@ -30,6 +30,10 @@ class CreateSoundsTable extends Migration
             $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
 
+
+            $table->unsignedBigInteger('moderator_id')->nullable();
+            $table->foreign('moderator_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->string('name');
             $table->string('uploaded_date'); 
             $table->string('song');

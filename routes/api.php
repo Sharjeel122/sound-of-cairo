@@ -57,7 +57,7 @@ Route::middleware(['json.response'])
                     Route::get('get-sound/front','SoundController@front');
                     Route::get('get-all/sounds','SoundController@Get_All'); 
                     Route::get('/totle-song','SoundController@Count_totle');
-
+                     Route::get('/get-sound/{id}','SoundController@Get_Sound');
 
                 
 
@@ -71,7 +71,7 @@ Route::middleware(['json.response'])
                         Route::put('/user-profile/user/update/{id}', 'UserProfileController@update');
 
 			         //sound
-			            Route::Post('/add-sound','SoundController@Add_Sound');
+			Route::Post('/add-sound','SoundController@Add_Sound');
                         Route::post('/block/sound/{id}','SoundController@Block');
                         Route::post('/unBlock/sound/{id}','SoundController@UnBlock');
                         Route::post('/sound/upvote/{id}','SoundController@Upvote');
@@ -79,6 +79,7 @@ Route::middleware(['json.response'])
                        Route::get('/get-my-song/','SoundController@Get_My_Saved_Song');
                         Route::post('/download/sound/{id}','DownloadController@download');
                         Route::post('/delete_song/{id}','SoundController@Delete_Song'); 
+                        
 
 
                         //sound collection
@@ -87,7 +88,7 @@ Route::middleware(['json.response'])
                        Route::get('/get/collection','CollectionController@Get_Collections');
                         Route::post('collection/delete/{id}','CollectionController@Delete');
 
- Route::get('/get/sound/collection','CollectionController@CollectionSound');
+                        Route::get('/get/sound/collection','CollectionController@CollectionSound');
 
 
                         // current user
@@ -98,7 +99,7 @@ Route::middleware(['json.response'])
                             return $user;
                         });
 
-              Route::group(['middleware' =>  'role:admin','auth:sanctum','json.response' ], function () {
+                   Route::group(['middleware' =>  'role:admin','auth:sanctum','json.response' ], function () {
                         // Category Routes
                         Route::post('/category', 'CategoryController@Add');
                         Route::post('update/category/{id}', 'CategoryController@Update');
@@ -120,7 +121,7 @@ Route::middleware(['json.response'])
                         Route::put('/location/block/{id}', 'LocationController@Block');
                         Route::put('/location/unblock/{id}', 'LocationController@Unblock');
 
-			    // sub category routs
+			            // sub category routs
                         Route::Post('add/sub/cat','SubCategoryController@add');
                         Route::Post('update-sub-cat/{id}','SubCategoryController@update_sub');
                         Route::Post('sub-cat-block/{id}','SubCategoryController@sub_block');
@@ -133,8 +134,17 @@ Route::middleware(['json.response'])
                         
                         
 
-                 });    
-          });
+                 }); 
+               // end admin middleware
+
+                Route::group(['middleware' =>  'role:moderator','auth:sanctum','json.response' ], function () {
+                   Route::get('moderator/sounds/rejected','SoundController@Rejected');
+                 }); 
+                 // end moderator middleware
+
+
+          }); 
+          // end auth middleware
 
                 }
             );
